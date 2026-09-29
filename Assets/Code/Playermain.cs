@@ -13,21 +13,12 @@ public class Playermain : MonoBehaviour
         Dead = 4
     }
 
-    public enum CurrentWeapon
-    {
-        
-        PolarStar = 0,
-        Fireball = 1,
-        RocketLauncher = 2
-        
-        
-        
-    }
+   
     
     
     
     public PlayerState state = PlayerState.Idle;
-    public CurrentWeapon cw = CurrentWeapon.PolarStar;
+    
     
     public float speed = 10;
     public float jump = 5;
@@ -43,6 +34,8 @@ public class Playermain : MonoBehaviour
     public AudioSource AS;
     public AudioClip FAK;
     public AudioClip Track;
+
+    
     
     void Start()
     {
@@ -220,12 +213,26 @@ public class Playermain : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-    
-        if (other.gameObject.CompareTag("Ihop"))
+
+        if (other.gameObject.CompareTag("Wintile"))
         {
             SceneManager.LoadScene("WinScreen");
         }
-        
-        
+
+
+
+        if (other.gameObject.CompareTag("PlzFix"))
+        {
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                //cheackFix(ture);
+            }
+                
+
+
+        }
+
+
+
     }
 }
