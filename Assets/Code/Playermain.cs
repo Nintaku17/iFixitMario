@@ -19,8 +19,9 @@ public class Playermain : MonoBehaviour
     public int Fixed_items;
     
     public PlayerState state = PlayerState.Idle;
-    
-    
+    public bool canfix;
+
+
     public float speed = 10;
     public float jump = 5;
     public float gravity = 3;
@@ -58,7 +59,8 @@ public class Playermain : MonoBehaviour
         {
             Goal.SetActive(true);
         }
-        //AS.clip = Track;
+        //AS.clip = Track; 
+
         
         //AS.Play();
         
@@ -218,32 +220,21 @@ public class Playermain : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
+        
+
         if (other.gameObject.CompareTag("WinTile"))
         {
+            
             SceneManager.LoadScene("WinScreen");
         }
 
 
-
-        if (other.gameObject.CompareTag("Fixme"))
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                FixableObject.CheackFix();
-                Fixed_items++;
-
-                if (Fixed_items >= 3)
-                {
-                    Goal.SetActive(true);
-                }
-
-            }
-                
-
-
-        }
-
-
-
     }
+
+   
+
+
+
+
+
 }
