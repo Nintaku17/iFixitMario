@@ -15,7 +15,8 @@ public class Playermain : MonoBehaviour
 
    
     
-    
+    public GameObject Goal;
+    public int Fixed_items;
     
     public PlayerState state = PlayerState.Idle;
     
@@ -53,7 +54,10 @@ public class Playermain : MonoBehaviour
 
     void Update()
     {
-        
+        if (Fixed_items >= 3)
+        {
+            Goal.SetActive(true);
+        }
         //AS.clip = Track;
         
         //AS.Play();
@@ -214,18 +218,25 @@ public class Playermain : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.CompareTag("Wintile"))
+        if (other.gameObject.CompareTag("WinTile"))
         {
             SceneManager.LoadScene("WinScreen");
         }
 
 
 
-        if (other.gameObject.CompareTag("PlzFix"))
+        if (other.gameObject.CompareTag("Fixme"))
         {
-            if (Input.GetKeyUp(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                //cheackFix(ture);
+                FixableObject.CheackFix();
+                Fixed_items++;
+
+                if (Fixed_items >= 3)
+                {
+                    Goal.SetActive(true);
+                }
+
             }
                 
 

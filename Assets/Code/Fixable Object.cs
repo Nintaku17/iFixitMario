@@ -4,7 +4,7 @@ public class FixableObject : MonoBehaviour
 {
 
     public SpriteRenderer SR;
-    public bool Repaired;
+    public static bool Repaired = false;
 
 
 
@@ -34,11 +34,11 @@ public class FixableObject : MonoBehaviour
 
     }
 
-    public void CheackFix(bool Repaired)
+    public static void CheackFix()
     {
 
        
-
+        Repaired = true;
 
     }
 
