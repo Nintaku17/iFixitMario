@@ -12,9 +12,6 @@ public class Playermain : MonoBehaviour
         Jumping = 3,
         Dead = 4
     }
-
-   
-    
     public GameObject Goal;
     public int Fixed_items;
     
@@ -49,10 +46,6 @@ public class Playermain : MonoBehaviour
         
     }
 
-
-    
-    
-
     void Update()
     {
         if (Fixed_items >= 3)
@@ -81,22 +74,9 @@ public class Playermain : MonoBehaviour
         if (daeth)  return;
         
        Movement();
-       
-     
-        
-        
         SR.flipX = facingleft;
-        
-        
-        
-      
-        
-        
-        SetState(state);
-        // end of void update    
+        SetState(state);    
     }
-    // outside of void update
-
 
     public void SetState(PlayerState PlayerSet)
     {
@@ -128,9 +108,6 @@ public class Playermain : MonoBehaviour
            // RB.gravityScale = 0;
            //AS.PlayOneShot(FAK);
         }
-        
-        
-        
     }
 
     public void Movement()
@@ -161,8 +138,6 @@ public class Playermain : MonoBehaviour
 
             vel.y = jump;
             state = PlayerState.Jumping;
-
-
         }
         RB.linearVelocity = vel;
     }
@@ -172,11 +147,7 @@ public class Playermain : MonoBehaviour
         daeth  = true;
         RB.linearVelocity = Vector2.zero;
         state = PlayerState.Dead;
-      
-        
-        
     }
-    
     public bool CanJump()
     {
         return isGrounded;
@@ -186,24 +157,16 @@ public class Playermain : MonoBehaviour
         isGrounded = true;
         if (other.gameObject.CompareTag("Evil"))
         {
-            
             SR.color = Color.black;
             NoMovement();
-            Invoke("Reset", Delay);
-            
+            Invoke("Reset", Delay);  
         }
-        
         if (other.gameObject.CompareTag("Hazard"))
         {
-            
             SR.color = Color.black;
             NoMovement();
             Invoke("Reset", Delay);
-            
         }
-        
-
-       
     }
     private void OnCollisionExit2D(Collision2D other)
     {
@@ -216,25 +179,12 @@ public class Playermain : MonoBehaviour
         SceneManager.LoadScene(currentScene.name);
     }
 
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-
-        
-
         if (other.gameObject.CompareTag("WinTile"))
         {
             
             SceneManager.LoadScene("WinScreen");
         }
-
-
     }
-
-   
-
-
-
-
-
 }
