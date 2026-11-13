@@ -5,6 +5,7 @@ public class FixableObject : MonoBehaviour
     private SpriteRenderer SR;
     public bool Repaired = false;
     private bool Canfix = false;
+    public Sprite repaired;
     public Playermain Playerscript;
 
     void Start()
@@ -21,11 +22,12 @@ public class FixableObject : MonoBehaviour
         }
         if (Repaired)
         {
+            SR.sprite=repaired;
             SR.color = Color.orange;
         }
         if (!Repaired)
         {
-            SR.color = Color.orangeRed;
+            SR.color = Color.white;
         }
     }
 

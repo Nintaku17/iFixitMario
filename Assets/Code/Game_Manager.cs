@@ -32,12 +32,12 @@ public class Game_Manager : MonoBehaviour
         if (timer <= 0)
         {
             timerText.text = "0";
-            Invoke(nameof(Endgame), 1f); // Will call on the endgame function after a certain amount of time specified
+            Endgame(); // Will call on the endgame function after a certain amount of time specified
         }
     }
 
     void Endgame() // takes the current scene and just resets
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene("WinScreen");
     }
 }
