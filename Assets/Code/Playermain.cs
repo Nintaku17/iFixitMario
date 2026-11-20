@@ -8,6 +8,7 @@ using System;
 
 public class Playermain : MonoBehaviour
 {
+    [SerializeField] private EdgeCollider2D edgeCollider2D;
     public static int Fixed_items;
 
     public float moveSpeed;
@@ -89,12 +90,15 @@ Vector2 hi;
     {
         if (grourem > 0 && jumpedddd == false)
         {
+            if(grourem<=10){
             jumpedddd = true;
+            }
             grourem -= 9;
 
-            myRB.linearVelocity = new Vector2(myRB.linearVelocity.x, jumpForce);
+            myRB.linearVelocity += new Vector2(0, jumpForce);
             //jumpsound.Play();
         }
+        
     }
     public void unJump()
     {
@@ -121,8 +125,9 @@ Vector2 hi;
 
         //Jump
         grourem -= Time.deltaTime;
-        if (isGrounded)
+        if(MathF.Abs(myRB.linearVelocity.y)<=0.05f)
         {
+            
             jumpedddd = false;
             if (jumpedddd == false)
             {
@@ -130,7 +135,7 @@ Vector2 hi;
             }
 
         }
-        
+       // print(myRB.linearVelocity.y);
         //run
         
 
@@ -235,7 +240,7 @@ Vector2 hi;
         {
             if (isGrounded)
             {
-                myRB.linearVelocity = new Vector2(0, myRB.linearVelocity.y);
+                //myRB.linearVelocity = new Vector2(0, myRB.linearVelocity.y);
             }
 
         }
@@ -255,7 +260,12 @@ Vector2 hi;
     }
     void Move()
     {
-        myRB.linearVelocity = new Vector2(horiz * moveSpeed, myRB.linearVelocity.y);
+        if (Mathf.Abs(myRB.linearVelocity.x) >= 14)
+        {
+            myRB.linearVelocity = new Vector2((myRB.linearVelocity.normalized * 14f).x,myRB.linearVelocity.y);
+        }
+        myRB.linearVelocity += new Vector2(horiz * moveSpeed*Time.deltaTime*5f,0);
+       
         if (horiz < 0 && m_FacingRight)
         {
             Flip();
